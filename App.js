@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import HomeScreen from "./Components/Home";
+import StreamingService from "./Components/StreamingService";
+import Genre from "./Components/Genre";
 
-export default function App() {
+import MatchedFilm from "./Components/MatchedFilm";
+
+//opretter tabs
+const Tab = createBottomTabNavigator();
+
+//opretter tabs for alle views
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+      <Tab.Navigator>
+      <Tab.Screen name="Movie Liker" component = {HomeScreen}/>
+      <Tab.Screen name="Streaming services" component = {StreamingService}/>
+      <Tab.Screen name="Genres" component = {Genre}/>
+      <Tab.Screen name="Matched Film" component = {MatchedFilm}/>
+      </Tab.Navigator>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+      );
+}
+  export default function (App) {
+  return (
+      <NavigationContainer>
+        <MyTabs/>
+      </NavigationContainer>
+  );
+
+  }
+
+//Al i denne klasse er lavet af Carl Emil Derby Hansen
